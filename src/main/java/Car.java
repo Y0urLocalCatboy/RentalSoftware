@@ -1,4 +1,17 @@
-public class Car extends Vehicle{
+public class Car extends Vehicle implements UserInterface {
+    private String additionalInformation; //pickup/motorcycle/...
+    @Override
+    public void search() {
+        System.out.println("Searching for other vehicles");
+    }
+    @Override
+    public void reservation() {
+        System.out.println("Reserving other vehicles");
+    }
+    @Override
+    public void invoice() {
+        System.out.println("Invoicing other vehicles");
+    }
     private String type; //ICE/hybrid/BEV/
     private String brand;
     public Car(String type, String brand, String color, String licensePlate, boolean isRented, int rentedDays, int pricePerHour) {

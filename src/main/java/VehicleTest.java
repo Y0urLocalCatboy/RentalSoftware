@@ -9,7 +9,7 @@ public class VehicleTest {
         Car car1 = new Car("ICE", "Toyota", "crimson", "AB 12345", true, 150, 50);
         Car car2 = new Car("BEV", "Tesla", "black", "CD 67890", false, 0, 100);
         Car car3 = new Car("hybrid", "Toyota", "yellow", "EF 24680", false, 0, 75);
-        Other motor1 = new Other("BEV", "Volkswagen", "black", "GH 13579", false, 0, 100, "motorcycle");
+        OtherVehicles motor1 = new OtherVehicles("BEV", "Volkswagen", "black", "GH 13579", false, 0, 100, "motorcycle");
         Vehicle[] all = {car1, car2, car3, motor1};
     }
 }
