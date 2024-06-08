@@ -1,5 +1,6 @@
+package com.example.rentalsoftware;
+
 public interface UserInterface {
-    void search();
     void reservation();
-    void invoice();
+    Return invoice();
 }

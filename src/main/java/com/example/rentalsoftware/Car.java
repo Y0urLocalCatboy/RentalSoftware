@@ -1,23 +1,22 @@
+package com.example.rentalsoftware;
+
 public class Car extends Vehicle implements UserInterface {
-    private String additionalInformation; //pickup/motorcycle/...
-    @Override
-    public void search() {
-        System.out.println("Searching for other vehicles");
-    }
-    @Override
-    public void reservation() {
-        System.out.println("Reserving other vehicles");
-    }
-    @Override
-    public void invoice() {
-        System.out.println("Invoicing other vehicles");
-    }
     private String type; //ICE/hybrid/BEV/
     private String brand;
     public Car(String type, String brand, String color, String licensePlate, boolean isRented, int rentedDays, int pricePerHour) {
         super(color, licensePlate, isRented, rentedDays, pricePerHour);
         this.type = type;
         this.brand = brand;
+    }
+    @Override
+    public Return invoice() {
+        Return return1 = new Return(getLicensePlate(), getBrand(), (24*getRentedDays()*getPricePerHour()));
+        this.setRented(false);
+        return return1;
+    }
+    @Override
+    public void reservation() {
+        this.setRented(true);
     }
     public String getType() {
         return type;

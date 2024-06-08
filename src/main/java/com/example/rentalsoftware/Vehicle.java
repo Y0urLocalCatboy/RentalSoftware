@@ -1,4 +1,6 @@
-public abstract class Vehicle {
+package com.example.rentalsoftware;
+
+public abstract class Vehicle implements UserInterface{
     private String color;
     private String licensePlate;
     private boolean isRented; //true if the vehicle is already rented, false otherwise
@@ -29,7 +31,7 @@ public abstract class Vehicle {
     public void setRented(boolean rented) {
         isRented = rented;
     }
-    public int getRentedHours() {
+    public int getRentedDays() {
         return rentedDays;
     }
     public void setRentedDays(int rentedDays) {
