@@ -10,10 +10,10 @@ public class VehicleTest {
         //Zmienić Arraye na listy - Imo to dosyć niezły pomysł, bo listy nie mają fixed pojemności, ale nie lubię się za mocno z listami - ktoś chętny się tym zająć?
         //Przygotować rysunek i zamysł do JavyFX (łatwiejsza opcja)
         //Przygotować JavęFX (trudniejsza opcja, o wiele łatwiej będzie z rysunkiem i pomysłem jak to ma wyglądać i działać)
-        Car car1 = new Car("ICE", "Toyota", "crimson", "AB 12345", true, 150, 50);
-        Car car2 = new Car("BEV", "Tesla", "black", "CD 67890", true, 0, 100);
-        Car car3 = new Car("hybrid", "Toyota", "yellow", "EF 24680", false, 0, 75);
-        OtherVehicles motor1 = new OtherVehicles("BEV", "Volkswagen", "black", "GH 13579", false, 0, 100, "motorcycle");
+        Car car1 = new Car("ICE", "Toyota", "crimson", "AB 12345", true, 1, 10);
+        Car car2 = new Car("BEV", "Tesla", "black", "CD 67890", true, 4, 15);
+        Car car3 = new Car("hybrid", "Toyota", "yellow", "EF 24680", false, 0, 7);
+        OtherVehicles motor1 = new OtherVehicles("BEV", "Volkswagen", "black", "GH 13579", false, 0, 10, "motorcycle");
         Vehicle[] all = {car1, car2, car3, motor1};
 
 
@@ -41,10 +41,12 @@ public class VehicleTest {
     }
     public static String invoiceGenerator(List<Return> returns, String name, String surname){
         StringBuilder invoice = new StringBuilder();
+        double total = 0;
         for (Return aReturn : returns) {
+            total += aReturn.getTotalAmount();
             invoice.append(aReturn);
             invoice.append("\n");
         }
-        return "Invoice for " + name + " " + surname + " is: \n"+ invoice.toString();
+        return "Invoice for " + name + " " + surname + " is: \n"+ invoice.toString() + "Total amount: " + total + "PLN";
     }
 }

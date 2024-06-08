@@ -36,6 +36,6 @@ public String getVehicle() {
 
     @Override
     public String toString() {
-        return "License Plate: " + licensePlate + "\nBrand: " + vehicle + "\nTotal Amount: " + totalAmount + "PLN\n";
+        return "License Plate: " + licensePlate + "\nBrand: " + vehicle + "\nAmount: " + totalAmount + " PLN\n";
     }
 }
