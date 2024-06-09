@@ -9,7 +9,7 @@
    <children>
       <Label fx:id="invoiceTitle" layoutX="36.0" layoutY="30.0" text="Your Invoice:" />
       <Label fx:id="invoiceBody" layoutX="24.0" layoutY="71.0" prefHeight="257.0" prefWidth="101.0" text="Label" />
-      <Button fx:id="exitButton" layoutX="531.0" layoutY="338.0" mnemonicParsing="false" text="Exit" />
-      <Button fx:id="toSecondSceneButton" layoutX="518.0" layoutY="303.0" mnemonicParsing="false" text="Go back" />
+      <Button fx:id="exitButton" layoutX="531.0" layoutY="338.0" mnemonicParsing="false" text="Exit" onAction="#exit"/>
+      <Button fx:id="toSecondSceneButton" layoutX="518.0" layoutY="303.0" mnemonicParsing="false" text="Go back" onAction="#goToSceneTwo"/>
    </children>
 </Pane>

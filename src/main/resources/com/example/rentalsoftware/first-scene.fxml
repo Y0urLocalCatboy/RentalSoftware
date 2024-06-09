@@ -8,8 +8,8 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rentalsoftware.FirstSceneController">
    <children>
-      <Button fx:id="continueSceneTwoButton" layoutX="268.0" layoutY="308.0" mnemonicParsing="false" text="Continue" />
-      <Button fx:id="leaveButton" layoutX="276.0" layoutY="345.0" mnemonicParsing="false" text="Leave" />
+      <Button fx:id="continueSceneTwoButton" layoutX="268.0" layoutY="308.0" mnemonicParsing="false" text="Continue" onAction="#goToSceneTwo" />
+      <Button fx:id="exitButton" layoutX="276.0" layoutY="345.0" mnemonicParsing="false" text="Exit" onAction="#exit"/>
       <TextField fx:id="nameTextField" layoutX="226.0" layoutY="153.0" />
       <TextField fx:id="surnameTextField" layoutX="226.0" layoutY="219.0" />
       <Label fx:id="nameLabel" layoutX="284.0" layoutY="117.0" text="Name" />
