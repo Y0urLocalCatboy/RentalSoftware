@@ -21,16 +21,13 @@ public class CarRentalApp extends Application {
         //SCENES LOADING
             //first scene
         FXMLLoader loader1 = new FXMLLoader(CarRentalApp.class.getResource("first-scene.fxml"));
-        Parent root1 = loader1.load();
-        Scene scene1 = new Scene(root1);
+        Scene scene1 = new Scene(loader1.load());
             //second scene
         FXMLLoader loader2 = new FXMLLoader(CarRentalApp.class.getResource("second-scene.fxml"));
-        Parent root2 = loader2.load();
-        Scene scene2 = new Scene(root2);
+        Scene scene2 = new Scene(loader2.load());
             //third scene
         FXMLLoader loader3 = new FXMLLoader(CarRentalApp.class.getResource("invoice-scene.fxml"));
-        Parent root3 = loader3.load();
-        Scene scene3 = new Scene(root3);
+        Scene scene3 = new Scene(loader3.load());
 
 
         //Initializing of the controllers (going to the next/last stage)
