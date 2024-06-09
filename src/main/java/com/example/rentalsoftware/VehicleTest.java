@@ -15,9 +15,9 @@ public class VehicleTest {
         Car car3 = new Car("hybrid", "Toyota", "yellow", "EF 24680", false, 0, 7);
         OtherVehicles motor1 = new OtherVehicles("BEV", "Volkswagen", "black", "GH 13579", false, 0, 10, "motorcycle");
         Vehicle[] all = {car1, car2, car3, motor1};
-
-
+        printAll(all);
         User user1 = new User("Jacek", "Bębniarz", List.of(car1, car2));
+
         user1.getVehicles().get(0).setRented(true);
         user1.getVehicles().get(1).setRented(true);
         System.out.println(invoiceGenerator(returnList(user1.getVehicles().toArray(new Vehicle[0])), user1.getName(), user1.getSurname()));
