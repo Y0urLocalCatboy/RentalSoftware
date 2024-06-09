@@ -32,9 +32,6 @@ public class Car extends Vehicle implements UserInterface {
     }
     @Override
     public String toString() {
-        return "Car{" + super.toString() +
-                "type='" + type + '\'' +
-                ", brand='" + brand + '\'' +
-                '}';
+        return "[Car] " + brand + " " + super.toString();
     }
 }

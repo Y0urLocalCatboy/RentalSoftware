@@ -45,12 +45,6 @@ public abstract class Vehicle implements UserInterface{
     }
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "color='" + color + '\'' +
-                ", licensePlate='" + licensePlate + '\'' +
-                ", isRented=" + isRented +
-                ", rentedDays=" + rentedDays +
-                ", pricePerHour=" + pricePerHour +
-                '}';
+        return  pricePerHour + " PLN/hour" + " License Plate: " + licensePlate;
     }
 }

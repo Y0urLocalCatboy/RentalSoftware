@@ -19,6 +19,10 @@ public class FirstSceneController {
 
     @FXML
     private void goToSceneTwo() {
+        if(nameTextField.getText().isEmpty() || surnameTextField.getText().isEmpty()) {
+            fluffLabel.setText("Please fill in all the fields");
+            return;
+        }
         stage.setScene(scene2);
     }
     @FXML

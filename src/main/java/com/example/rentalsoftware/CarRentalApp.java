@@ -6,23 +6,29 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
 
-public class FirstSceneApp extends Application {
+public class CarRentalApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
         //SCENES LOADING
             //first scene
-        FXMLLoader loader1 = new FXMLLoader(FirstSceneApp.class.getResource("first-scene.fxml"));
+        FXMLLoader loader1 = new FXMLLoader(CarRentalApp.class.getResource("first-scene.fxml"));
         Parent root1 = loader1.load();
         Scene scene1 = new Scene(root1);
             //second scene
-        FXMLLoader loader2 = new FXMLLoader(FirstSceneApp.class.getResource("second-scene.fxml"));
+        FXMLLoader loader2 = new FXMLLoader(CarRentalApp.class.getResource("second-scene.fxml"));
         Parent root2 = loader2.load();
         Scene scene2 = new Scene(root2);
             //third scene
-        FXMLLoader loader3 = new FXMLLoader(FirstSceneApp.class.getResource("invoice-scene.fxml"));
+        FXMLLoader loader3 = new FXMLLoader(CarRentalApp.class.getResource("invoice-scene.fxml"));
         Parent root3 = loader3.load();
         Scene scene3 = new Scene(root3);
 
@@ -45,6 +51,21 @@ public class FirstSceneApp extends Application {
     }
 
     public static void main(String[] args) {
+//        Car car1 = new Car("ICE", "Toyota", "crimson", "AB 12345", true, 1, 10);
+//        Car car2 = new Car("BEV", "Tesla", "black", "CD 67890", true, 4, 15);
+//        Car car3 = new Car("hybrid", "Toyota", "yellow", "EF 24680", false, 0, 7);
+//        OtherVehicles motor1 = new OtherVehicles("BEV", "Volkswagen", "black", "GH 13579", false, 0, 10, "motorcycle");
+//        Vehicle[] all = {car1, car2, car3, motor1};
+//        Gson gson = new Gson();
+//        String json = gson.toJson(all);
+//        System.out.println(json);
+//
+//        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
+//            fileWriter.write(json);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         launch();
     }
 }

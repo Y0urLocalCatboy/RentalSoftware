@@ -12,7 +12,7 @@
    <children>
       <Button fx:id="exitButton" layoutX="533.0" layoutY="351.0" mnemonicParsing="false" text="Exit" onAction="#exit"/>
       <Button fx:id="returnButton" layoutX="274.0" layoutY="260.0" mnemonicParsing="false" text="Return" onAction="#goToInvoice"/>
-      <Button fx:id="reserveButton" layoutX="271.0" layoutY="206.0" mnemonicParsing="false" text="Reserve" />
+      <Button fx:id="reserveButton" layoutX="271.0" layoutY="206.0" mnemonicParsing="false" text="Reserve" onAction="#reservation"/>
       <TextField fx:id="searchTextField" layoutX="40.0" layoutY="27.0" />
       <ListView fx:id="carList" layoutX="14.0" layoutY="57.0" onMouseClicked="#listMouseClick" onScroll="#listScrolled" prefHeight="332.0" prefWidth="200.0" />
       <ScrollBar layoutX="214.0" layoutY="57.0" orientation="VERTICAL" prefHeight="332.0" prefWidth="14.0" />
