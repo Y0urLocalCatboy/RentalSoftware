@@ -1,1 +1,38 @@
-[{"type":"ICE","brand":"Toyota","color":"crimson","licensePlate":"AB12345","isRented":true,"rentedDays":1,"pricePerHour":10},{"type":"BEV","brand":"Tesla","color":"black","licensePlate":"CD67890","isRented":true,"rentedDays":4,"pricePerHour":15},{"type":"hybrid","brand":"Toyota","color":"yellow","licensePlate":"EF24680","isRented":true,"rentedDays":1,"pricePerHour":7},{"type":"BEV","brand":"Volkswagen","color":"black","licensePlate":"GH13579","isRented":false,"rentedDays":0,"pricePerHour":10}]
+[
+  {
+    "type": "ICE",
+    "brand": "Toyota",
+    "color": "crimson",
+    "licensePlate": "AB12345",
+    "isRented": true,
+    "rentedDays": 1,
+    "pricePerHour": 10
+  },
+  {
+    "type": "BEV",
+    "brand": "Tesla",
+    "color": "black",
+    "licensePlate": "CD67890",
+    "isRented": true,
+    "rentedDays": 4,
+    "pricePerHour": 15
+  },
+  {
+    "type": "hybrid",
+    "brand": "Toyota",
+    "color": "yellow",
+    "licensePlate": "EF24680",
+    "isRented": true,
+    "rentedDays": 1,
+    "pricePerHour": 7
+  },
+  {
+    "type": "BEV",
+    "brand": "Volkswagen",
+    "color": "black",
+    "licensePlate": "GH13579",
+    "isRented": true,
+    "rentedDays": 1,
+    "pricePerHour": 10
+  }
+]

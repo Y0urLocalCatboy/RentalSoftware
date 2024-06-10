@@ -1,5 +1,6 @@
 package com.example.rentalsoftware;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import javafx.application.Platform;
@@ -17,7 +18,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 import com.google.gson.Gson;
-
 public class SecondSceneController {
     private Stage stage;
     private Scene scene3;
@@ -26,7 +26,6 @@ public class SecondSceneController {
         this.stage = stage;
         this.scene3 = scene3;
     }
-    private List<Car> all;
     @FXML
     public void initialize() {
         carList.getItems().clear();
@@ -44,42 +43,43 @@ public class SecondSceneController {
         }
 
     }
-    @FXML
-    private void goToInvoice() {
-        stage.setScene(scene3);
-    }
-    @FXML
-    private void reservation() {
-        if(clickedCar == null) {
-            searchLabel.setText("Please choose a car");
-            return;
-        }
-        clickedCar.setRented(true);
-        clickedCar.setRentedDays(1);
-        searchLabel.setText("Car reserved");
-        Gson gson = new Gson();
-        String json = gson.toJson(all);
+    private List<Car> all;
 
-        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
-            fileWriter.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        initialize();
+    private Vehicle clickedCar;
+
+    @FXML
+    private Label availableLabel;
+
+    @FXML
+    private ListView<String> carList;
+
+
+    @FXML
+    private ListView<?> reservedCarList;
+
+    @FXML
+    private Label reservedLabel;
+
+    @FXML
+    private TextField searchTextField;
+
+    @FXML
+    private TextField searchTextField1;
+
+    @FXML
+    void back() {
+
     }
+
     @FXML
     private void exit() {
         Platform.exit();
     }
-    @FXML
-    private ListView<String> carList;
 
     @FXML
-    private Label searchLabel;
-    private Vehicle clickedCar;
-
-    @FXML
-    private TextField searchTextField;
+    private void goToInvoice() {
+        stage.setScene(scene3);
+    }
 
     @FXML
     void listMouseClick(MouseEvent event) {
@@ -96,6 +96,31 @@ public class SecondSceneController {
 
     @FXML
     void listScrolled(ScrollEvent event) {
+
+    }
+
+    @FXML
+    private void reservation() {
+        if(clickedCar == null) {
+            availableLabel.setText("Please choose a car");
+            return;
+        }
+        clickedCar.setRented(true);
+        clickedCar.setRentedDays(1);
+        availableLabel.setText("Car reserved");
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(all);
+
+        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
+            fileWriter.write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        initialize();
+    }
+
+    @FXML
+    void returnCar() {
 
     }
 
