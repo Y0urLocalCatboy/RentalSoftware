@@ -1,7 +1,7 @@
 package com.example.rentalsoftware;
 
 import javafx.application.Platform;
-import javafx.fxml.FXML;
+
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Label;
@@ -28,7 +28,6 @@ public class SecondSceneController {
         this.scene1 = scene1;
     }
 
-    @FXML
     public void initialize() {
         carList.getItems().clear();
         reservedCarList.getItems().clear();
@@ -58,19 +57,19 @@ public class SecondSceneController {
         showUserCars();
     }
 
-    @FXML
+
     private Label availableLabel;
 
-    @FXML
+
     private ListView<String> carList;
 
-    @FXML
+
     private ListView<String> reservedCarList;
 
-    @FXML
+
     private Label reservedLabel;
 
-    @FXML
+
     private void showUserCars() {
         reservedCarList.getItems().clear();
         for (Vehicle vehicle : currentUser.getVehicles()) {
@@ -78,22 +77,21 @@ public class SecondSceneController {
         }
     }
 
-    @FXML
+
     private void back() throws IOException {
         stage.setScene(scene1);
     }
 
-    @FXML
+
     private void exit() {
         Platform.exit();
     }
 
-    @FXML
     private void goToInvoice() {
         stage.setScene(scene3);
     }
 
-    @FXML
+
     void listMouseClick() {
         String selected = carList.getSelectionModel().getSelectedItem();
         if (selected != null) {
@@ -123,7 +121,7 @@ public class SecondSceneController {
         }
     }
 
-    @FXML
+
     private void reservation() {
         if (clickedCar == null) {
             availableLabel.setText("Please choose a car");

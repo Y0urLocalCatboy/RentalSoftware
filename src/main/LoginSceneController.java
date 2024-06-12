@@ -1,7 +1,6 @@
 package com.example.rentalsoftware;
 
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -27,19 +26,19 @@ public class LoginSceneController {
         this.mainScene = mainScene;
     }
 
-    @FXML
+
     private TextField nameField;
 
-    @FXML
+
     private TextField surnameField;
 
-    @FXML
+
     private Button loginButton;
 
-    @FXML
+
     private Button exitButton;
 
-    @FXML
+
     private void login() {
         String name = nameField.getText();
         String surname = surnameField.getText();
@@ -66,7 +65,7 @@ public class LoginSceneController {
         stage.setScene(mainScene);
     }
 
-    @FXML
+
     private void exit() {
         Platform.exit();
     }
