@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rentalsoftware.InvoiceSceneController">
+   <children>
+      <Label fx:id="invoiceTitle" layoutX="36.0" layoutY="30.0" text="Your Invoice:" />
+      <Label fx:id="invoiceBody" layoutX="24.0" layoutY="71.0" prefHeight="257.0" prefWidth="101.0" text="Label" />
+      <Button fx:id="exitButton" layoutX="531.0" layoutY="338.0" mnemonicParsing="false" text="Exit" onAction="#exit"/>
+      <Button fx:id="toSecondSceneButton" layoutX="518.0" layoutY="303.0" mnemonicParsing="false" text="Go back" onAction="#goToSceneTwo"/>
+   </children>
+</Pane>
