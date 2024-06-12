@@ -22,7 +22,7 @@
     "brand": "Toyota",
     "color": "yellow",
     "licensePlate": "EF24680",
-    "isRented": true,
+    "isRented": false,
     "rentedDays": 1,
     "pricePerHour": 7
   },
@@ -40,7 +40,7 @@
     "brand": "Renault",
     "color": "black",
     "licensePlate": "AF43290",
-    "isRented": true,
+    "isRented": false,
     "rentedDays": 1,
     "pricePerHour": 15
   },
@@ -50,7 +50,7 @@
     "color": "yellow",
     "licensePlate": "EF00000",
     "isRented": false,
-    "rentedDays": 0,
+    "rentedDays": 1,
     "pricePerHour": 7
   }
 ]

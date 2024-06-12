@@ -24,10 +24,13 @@ import com.google.gson.Gson;
 public class SecondSceneController {
     private Stage stage;
     private Scene scene3;
+    private Scene scene1;
 
-    public void init(Stage stage, Scene scene3) {
+
+    public void init(Stage stage, Scene scene3, Scene scene1) {
         this.stage = stage;
         this.scene3 = scene3;
+        this.scene1 = scene1;
     }
 
     @FXML
@@ -77,8 +80,9 @@ public class SecondSceneController {
 
     @FXML
     private void back() throws IOException {
-        Stage primaryStage = (Stage) backButton.getScene().getWindow();
-        primaryStage.setScene(new Scene(new FXMLLoader(getClass().getResource("first-scene.fxml")).load()));
+        //Stage primaryStage = (Stage) backButton.getScene().getWindow();
+        //primaryStage.setScene(new Scene(new FXMLLoader(getClass().getResource("first-scene.fxml")).load()));
+        stage.setScene(scene1);
     }
 
     @FXML
@@ -162,6 +166,7 @@ public class SecondSceneController {
             return;
         }
         clickedCar.setRented(true);
+        clickedCar.setRentedDays(1);
         reservedCarList.getItems().add(clickedCar.toString());
         carList.getItems().remove(clickedCar.toString());
 
@@ -175,32 +180,49 @@ public class SecondSceneController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        initialize();
     }
+
     @FXML
     private void handleReturnButtonAction() {
-        if (clickedCar == null) {
-            availableLabel.setText("Please choose a car to return");
-            return;
-        }
-        if (!clickedCar.isRented()) {
-            availableLabel.setText("This car hasn't been rented");
-            return;
-        }
-        clickedCar.setRented(false);
-        carList.getItems().add(clickedCar.toString());
-        reservedCarList.getItems().remove(clickedCar.toString());
+        String selected = reservedCarList.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            String[] parts = selected.split(" ");
+            if (parts.length >= 7) {
+                String chosen = parts[6];
+                for (Car car : all) {
+                    if (chosen.equals(car.getLicensePlate())) {
+                        clickedCar = car;
+                        break;
+                    }
+                }
+                if (clickedCar != null && clickedCar.isRented()) {
+                    clickedCar.setRented(false);
+                    carList.getItems().add(clickedCar.toString());
+                    reservedCarList.getItems().remove(selected);
 
-        availableLabel.setText("Car returned successfully");
+                    availableLabel.setText("Car returned successfully");
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(all);
+                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                    String json = gson.toJson(all);
 
-        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
-            fileWriter.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
+                    try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
+                        fileWriter.write(json);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    initialize();
+                } else {
+                    availableLabel.setText("This car hasn't been rented.");
+                }
+            } else {
+                availableLabel.setText("Selected item does not contain enough parts.");
+            }
+        } else {
+            availableLabel.setText("No item selected.");
         }
     }
+
     // New method to handle the return button click
     /*@FXML
     private void handleReturnButtonAction() {
