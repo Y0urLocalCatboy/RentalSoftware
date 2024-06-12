@@ -13,8 +13,8 @@
     "brand": "Tesla",
     "color": "black",
     "licensePlate": "CD67890",
-    "isRented": false,
-    "rentedDays": 4,
+    "isRented": true,
+    "rentedDays": 1,
     "pricePerHour": 15
   },
   {
@@ -22,7 +22,7 @@
     "brand": "Toyota",
     "color": "yellow",
     "licensePlate": "EF24680",
-    "isRented": false,
+    "isRented": true,
     "rentedDays": 1,
     "pricePerHour": 7
   },
@@ -31,8 +31,8 @@
     "brand": "Volkswagen",
     "color": "black",
     "licensePlate": "GH13579",
-    "isRented": true,
-    "rentedDays": 1,
+    "isRented": false,
+    "rentedDays": 0,
     "pricePerHour": 10
   },
   {
@@ -40,8 +40,8 @@
     "brand": "Renault",
     "color": "black",
     "licensePlate": "AF43290",
-    "isRented": false,
-    "rentedDays": 0,
+    "isRented": true,
+    "rentedDays": 1,
     "pricePerHour": 15
   },
   {
@@ -50,7 +50,7 @@
     "color": "yellow",
     "licensePlate": "EF00000",
     "isRented": false,
-    "rentedDays": 1,
+    "rentedDays": 0,
     "pricePerHour": 7
   }
 ]

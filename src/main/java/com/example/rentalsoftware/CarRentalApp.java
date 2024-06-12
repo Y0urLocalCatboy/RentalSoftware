@@ -18,34 +18,30 @@ public class CarRentalApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        //SCENES LOADING
-            //first scene
+        // Scenes Loading
         FXMLLoader loader1 = new FXMLLoader(CarRentalApp.class.getResource("first-scene.fxml"));
         Scene scene1 = new Scene(loader1.load());
-            //second scene
         FXMLLoader loader2 = new FXMLLoader(CarRentalApp.class.getResource("second-scene.fxml"));
         Scene scene2 = new Scene(loader2.load());
-            //third scene
         FXMLLoader loader3 = new FXMLLoader(CarRentalApp.class.getResource("invoice-scene.fxml"));
         Scene scene3 = new Scene(loader3.load());
 
+        // Initializing of the controllers
+        FirstSceneController controller1_2 = loader1.getController();
+        controller1_2.init(stage, scene2);
 
-        //Initializing of the controllers (going to the next/last stage)
-            //1 -> 2
-        FirstSceneController controller1 = loader1.getController();
-        controller1.init(stage, scene2);
-            //2 -> 3
-        SecondSceneController controller2 = loader2.getController();
-        controller2.init(stage, scene3);
-            //3 -> 2
-        InvoiceSceneController controller3 = loader3.getController();
-        controller3.init(stage, scene2);
+        SecondSceneController controller2_3 = loader2.getController();
+        controller2_3.init(stage, scene3);
 
-        //startup
+        InvoiceSceneController controller3_2 = loader3.getController();
+        controller3_2.init(stage, scene2);
+
+        // Startup
         stage.setTitle("Car Rental Application");
         stage.setScene(scene1);
         stage.show();
     }
+
 
     public static void main(String[] args) {
 //        Car car1 = new Car("ICE", "Toyota", "crimson", "AB 12345", true, 1, 10);
