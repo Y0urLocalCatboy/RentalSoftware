@@ -21,6 +21,7 @@ public class InvoiceSceneController {
     private List<Car> all;
 
 
+
     public void init(Stage stage, Scene scene2) {
         this.stage = stage;
         this.scene2 = scene2;
@@ -49,20 +50,18 @@ public class InvoiceSceneController {
      }
         invoiceTitle.setText("Invoice");
         invoiceBody.setText(invoice + "Total price: " + price + " PLN");
-
-
     }
 
 
-    @FXML
-    private void goToSceneTwo() {
-        stage.setScene(scene2);
-    }
+
     @FXML
     private void exit() {
         Platform.exit();
     }
-
+    @FXML
+    private void goToSceneTwo() {
+        stage.setScene(scene2);
+    }
     @FXML
     private Label invoiceBody;
 

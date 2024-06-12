@@ -20,7 +20,7 @@ public class CarRentalApp extends Application {
 
         // Initializing of the controllers
         FirstSceneController controller1_2 = loader1.getController();
-        controller1_2.init(stage, scene2, scene1);
+        controller1_2.init(stage, scene2);
 
         SecondSceneController controller2_3 = loader2.getController();
         controller2_3.init(stage, scene3, scene1);

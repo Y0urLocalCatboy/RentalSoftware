@@ -6,6 +6,7 @@ import com.google.gson.stream.JsonReader;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,6 +32,7 @@ public class SecondSceneController {
         this.stage = stage;
         this.scene3 = scene3;
         this.scene1 = scene1;
+
     }
 
     @FXML
@@ -91,6 +93,15 @@ public class SecondSceneController {
     @FXML
     private void goToInvoice() {
         stage.setScene(scene3);
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("invoice-scene.fxml"));
+//        try {
+//            Parent root = loader.load();
+//            InvoiceSceneController invoiceController = loader.getController();
+//            invoiceController.initialize();
+//            stage.setScene(new Scene(root));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @FXML
