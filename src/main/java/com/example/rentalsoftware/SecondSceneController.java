@@ -75,8 +75,6 @@ public class SecondSceneController {
     @FXML
     private TextField searchTextField1;
 
-    @FXML
-    private Button backButton;
 
     @FXML
     private void back() throws IOException {
@@ -131,29 +129,29 @@ public class SecondSceneController {
         // Add functionality to handle list scroll event
     }
 
-    @FXML
-    private void reservation() {
-        if (clickedCar == null) {
-            availableLabel.setText("Please choose a car");
-            return;
-        }
-        if (clickedCar.isRented()) {
-            availableLabel.setText("This car is already reserved");
-            return;
-        }
-        clickedCar.setRented(true);
-        clickedCar.setRentedDays(1);
-        availableLabel.setText("Car reserved");
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(all);
-
-        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
-            fileWriter.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        initialize();
-    }
+//    @FXML
+//    private void reservation() {
+//        if (clickedCar == null) {
+//            availableLabel.setText("Please choose a car");
+//            return;
+//        }
+//        if (clickedCar.isRented()) {
+//            availableLabel.setText("This car is already reserved");
+//            return;
+//        }
+//        clickedCar.setRented(true);
+//        clickedCar.setRentedDays(1);
+//        availableLabel.setText("Car reserved");
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        String json = gson.toJson(all);
+//
+//        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
+//            fileWriter.write(json);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        initialize();
+//    }
 
     @FXML
     private void handleReserveButtonAction() {

@@ -11,7 +11,7 @@
    <children>
       <Button fx:id="exitButton" layoutX="282.0" layoutY="315.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
       <Button fx:id="returnButton" layoutX="252.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleReturnButtonAction" text="Return Vehicle" /> <!-- Updated here -->
-      <Button fx:id="reserveButton" layoutX="249.0" layoutY="175.0" mnemonicParsing="false" onAction="#reservation" text="Reserve Vehicle" />
+      <Button fx:id="reserveButton" layoutX="249.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleReserveButtonAction" text="Reserve Vehicle" />
       <TextField fx:id="searchTextField" layoutX="40.0" layoutY="27.0" />
       <ListView fx:id="carList" layoutX="14.0" layoutY="57.0" onMouseClicked="#listMouseClick" onScroll="#listScrolled" prefHeight="332.0" prefWidth="200.0" />
       <ScrollBar layoutX="214.0" layoutY="57.0" orientation="VERTICAL" prefHeight="332.0" prefWidth="14.0" />
@@ -20,7 +20,7 @@
       <ScrollBar layoutX="563.0" layoutY="57.0" orientation="VERTICAL" prefHeight="332.0" prefWidth="14.0" />
       <TextField fx:id="searchTextField1" layoutX="388.0" layoutY="27.0" />
       <Label fx:id="reservedLabel" layoutX="404.0" layoutY="5.0" text="Your reserved vehicles" />
-      <Button fx:id="backButton" layoutX="270.0" layoutY="278.0" mnemonicParsing="false" text="Log Out" />
+      <Button fx:id="backButton" layoutX="270.0" layoutY="278.0" mnemonicParsing="false" onAction="#back" text="Log Out" />
       <Button fx:id="returnButton1" layoutX="253.0" layoutY="245.0" mnemonicParsing="false" onAction="#goToInvoice" text="Create Invoice" />
    </children>
 </Pane>
