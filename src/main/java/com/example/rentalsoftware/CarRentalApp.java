@@ -9,7 +9,6 @@ import java.io.IOException;
 public class CarRentalApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-
         // Scenes Loading
         FXMLLoader loader1 = new FXMLLoader(CarRentalApp.class.getResource("first-scene.fxml"));
         Scene scene1 = new Scene(loader1.load());
@@ -33,7 +32,6 @@ public class CarRentalApp extends Application {
         stage.setScene(scene1);
         stage.show();
     }
-
 
     public static void main(String[] args) {
         launch();

@@ -1,38 +1,36 @@
 package com.example.rentalsoftware;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.stage.Stage;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
-import com.google.gson.Gson;
 
 public class SecondSceneController {
     private Stage stage;
     private Scene scene3;
     private Scene scene1;
-
+    private List<Car> all;
+    private Vehicle clickedCar;
 
     public void init(Stage stage, Scene scene3, Scene scene1) {
         this.stage = stage;
         this.scene3 = scene3;
         this.scene1 = scene1;
-
     }
 
     @FXML
@@ -56,9 +54,6 @@ public class SecondSceneController {
         }
     }
 
-    private List<Car> all;
-    private Vehicle clickedCar;
-
     @FXML
     private Label availableLabel;
 
@@ -69,14 +64,7 @@ public class SecondSceneController {
     private ListView<String> reservedCarList;
 
     @FXML
-    private Label reservedLabel;
-
-    @FXML
     private TextField searchTextField;
-
-    @FXML
-    private TextField searchTextField1;
-
 
     @FXML
     private void back() throws IOException {
@@ -112,26 +100,12 @@ public class SecondSceneController {
             if (parts.length >= 7) {
                 String chosen = parts[6];
                 for (Car car : all) {
-                    if (chosen.equals(car.getLicensePlate())) {
+                    if (car.getLicensePlate().equals(chosen)) {
                         clickedCar = car;
                         break;
                     }
                 }
-                if (clickedCar != null) {
-                    searchTextField.setText(clickedCar.toString());
-                    if (clickedCar.isRented()) {
-                        availableLabel.setText("This car is already reserved");
-                    } else {
-                        availableLabel.setText("This car is available for reservation");
-                    }
-                } else {
-                    availableLabel.setText("Clicked car not found.");
-                }
-            } else {
-                availableLabel.setText("Selected item does not contain enough parts.");
             }
-        } else {
-            availableLabel.setText("No item selected.");
         }
     }
 
@@ -280,4 +254,45 @@ public class SecondSceneController {
             availableLabel.setText("No item selected.");
         }
     }*/
+
+    @FXML
+    void reserveCar() {
+        if (clickedCar != null) {
+            clickedCar.reservation();
+            carList.getItems().remove(clickedCar.toString());
+            reservedCarList.getItems().add(clickedCar.toString());
+            updateJsonFile();
+        }
+    }
+
+    @FXML
+    void returnCar() {
+        if (clickedCar != null) {
+            Return invoice = clickedCar.invoice();
+            reservedCarList.getItems().remove(clickedCar.toString());
+            carList.getItems().add(clickedCar.toString());
+            updateJsonFile();
+        }
+    }
+
+    @FXML
+    private void searchCars(ScrollEvent event) {
+        String query = searchTextField.getText().toLowerCase();
+        carList.getItems().clear();
+        for (Car car : all) {
+            if (car.toString().toLowerCase().contains(query)) {
+                carList.getItems().add(car.toString());
+            }
+        }
+    }
+
+    private void updateJsonFile() {
+        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(all, fileWriter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
