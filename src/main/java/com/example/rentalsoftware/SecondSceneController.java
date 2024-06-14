@@ -68,8 +68,6 @@ public class SecondSceneController {
 
     @FXML
     private void back() throws IOException {
-        //Stage primaryStage = (Stage) backButton.getScene().getWindow();
-        //primaryStage.setScene(new Scene(new FXMLLoader(getClass().getResource("first-scene.fxml")).load()));
         stage.setScene(scene1);
     }
 
@@ -81,15 +79,6 @@ public class SecondSceneController {
     @FXML
     private void goToInvoice() {
         stage.setScene(scene3);
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("invoice-scene.fxml"));
-//        try {
-//            Parent root = loader.load();
-//            InvoiceSceneController invoiceController = loader.getController();
-//            invoiceController.initialize();
-//            stage.setScene(new Scene(root));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     @FXML
@@ -114,29 +103,7 @@ public class SecondSceneController {
         // Add functionality to handle list scroll event
     }
 
-//    @FXML
-//    private void reservation() {
-//        if (clickedCar == null) {
-//            availableLabel.setText("Please choose a car");
-//            return;
-//        }
-//        if (clickedCar.isRented()) {
-//            availableLabel.setText("This car is already reserved");
-//            return;
-//        }
-//        clickedCar.setRented(true);
-//        clickedCar.setRentedDays(1);
-//        availableLabel.setText("Car reserved");
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//        String json = gson.toJson(all);
-//
-//        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
-//            fileWriter.write(json);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        initialize();
-//    }
+
 
     @FXML
     private void handleReserveButtonAction() {
@@ -205,56 +172,6 @@ public class SecondSceneController {
             availableLabel.setText("No item selected.");
         }
     }
-
-    // New method to handle the return button click
-    /*@FXML
-    private void handleReturnButtonAction() {
-        String selected = reservedCarList.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            String[] parts = selected.split(" ");
-            if (parts.length >= 7) {
-                String chosen = parts[6];
-                clickedCar = null; // Reset clickedCar before searching
-                for (Car car : all) {
-                    if (chosen.equals(car.getLicensePlate())) {
-                        clickedCar = car;
-                        break;
-                    }
-                }
-
-                if (clickedCar == null) {
-                    availableLabel.setText("Car not found.");
-                    return;
-                }
-
-                if (!clickedCar.isRented()) {
-                    availableLabel.setText("This car hasn't been rented.");
-                    return;
-                }
-
-                clickedCar.setRented(false);
-                clickedCar.setRentedDays(0);
-                reservedCarList.getItems().remove(selected);
-                carList.getItems().add(clickedCar.toString());
-
-                availableLabel.setText("Car returned successfully");
-
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                String json = gson.toJson(all);
-
-                try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
-                    fileWriter.write(json);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                availableLabel.setText("Selected item does not contain enough parts.");
-            }
-        } else {
-            availableLabel.setText("No item selected.");
-        }
-    }*/
-
     @FXML
     void reserveCar() {
         if (clickedCar != null) {

@@ -4,7 +4,7 @@
     "brand": "Toyota",
     "color": "crimson",
     "licensePlate": "AB12345",
-    "isRented": true,
+    "isRented": false,
     "rentedDays": 1,
     "pricePerHour": 10
   },
@@ -49,7 +49,7 @@
     "brand": "Volkswagen",
     "color": "yellow",
     "licensePlate": "EF00000",
-    "isRented": true,
+    "isRented": false,
     "rentedDays": 1,
     "pricePerHour": 7
   }
