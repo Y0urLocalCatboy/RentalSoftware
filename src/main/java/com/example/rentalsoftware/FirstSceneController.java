@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 public class FirstSceneController {
     private Stage stage;
     private Scene scene2;
+    private Scene scene4;
     @FXML
     private TextField nameTextField;
     @FXML
@@ -25,9 +26,10 @@ public class FirstSceneController {
         this.fluffLabel.setText(fluffLabel);
     }
 
-    public void init(Stage stage, Scene scene2) {
+    public void init(Stage stage, Scene scene2, Scene scene4) {
         this.stage = stage;
         this.scene2 = scene2;
+        this.scene4 = scene4;
     }
     @FXML
     private void goToSceneTwo() {
@@ -43,6 +45,12 @@ public class FirstSceneController {
         } else if (!nameTextField.getText().matches("[a-zA-Z]+") || !surnameTextField.getText().matches("[a-zA-Z]+")) {
             fluffLabel.setText("Name and surname must contain only letters!");
             return;
+        } else if(nameTextField.getText().equals("admin") || surnameTextField.getText().equals("admin")) {
+            setFluffLabel("Enter your name and surname to log in!");
+            setNameTextField("");
+            setSurnameTextField("");
+            stage.setScene(scene4);
+            return;
         } else if (nameTextField.getText().equals(surnameTextField.getText())) {
             fluffLabel.setText("Name and surname must be different!");
             return;
@@ -54,9 +62,6 @@ public class FirstSceneController {
             return;
         } else if (nameTextField.getText().contains(" ") || surnameTextField.getText().contains(" ")) {
             fluffLabel.setText("Name and surname must not contain spaces!");
-            return;
-        } else if(nameTextField.equals("admin") || surnameTextField.equals("admin")) {
-            //SOMETHING NEW
             return;
         }
         setFluffLabel("Enter your name and surname to log in!");

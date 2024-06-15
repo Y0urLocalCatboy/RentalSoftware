@@ -2,6 +2,7 @@ module com.example.rentalsoftware {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
+    requires error.prone.annotations;
 
 
 //    opens com.example.rentalsoftware to javafx.fxml;

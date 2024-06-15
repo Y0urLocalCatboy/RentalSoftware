@@ -2,7 +2,7 @@
   {
     "type": "ICE",
     "brand": "Toyota",
-    "color": "crimson",
+    "color": "Crimson",
     "licensePlate": "AB12345",
     "isRented": false,
     "rentedDays": 1,
@@ -11,46 +11,64 @@
   {
     "type": "BEV",
     "brand": "Tesla",
-    "color": "black",
+    "color": "Black",
     "licensePlate": "CD67890",
     "isRented": true,
     "rentedDays": 1,
     "pricePerHour": 15
   },
   {
-    "type": "hybrid",
+    "type": "Hybrid",
     "brand": "Toyota",
-    "color": "yellow",
+    "color": "Yellow",
     "licensePlate": "EF24680",
-    "isRented": false,
+    "isRented": true,
     "rentedDays": 1,
     "pricePerHour": 7
   },
   {
     "type": "BEV",
     "brand": "Volkswagen",
-    "color": "black",
+    "color": "Black",
     "licensePlate": "GH13579",
-    "isRented": false,
+    "isRented": true,
     "rentedDays": 1,
     "pricePerHour": 10
   },
   {
     "type": "BEV",
     "brand": "Renault",
-    "color": "black",
+    "color": "Black",
     "licensePlate": "AF43290",
     "isRented": false,
     "rentedDays": 1,
     "pricePerHour": 15
   },
   {
-    "type": "hybrid",
-    "brand": "Volkswagen",
-    "color": "yellow",
-    "licensePlate": "EF00000",
+    "type": "BEV",
+    "brand": "Skoda",
+    "color": "Black",
+    "licensePlate": "VC13011",
     "isRented": false,
     "rentedDays": 1,
+    "pricePerHour": 100
+  },
+  {
+    "type": "Hybrid",
+    "brand": "Lenovo",
+    "color": "Crimson",
+    "licensePlate": "KSD1234",
+    "isRented": true,
+    "rentedDays": 1,
     "pricePerHour": 7
+  },
+  {
+    "type": "BEV",
+    "brand": "Lenovo",
+    "color": "Black",
+    "licensePlate": "CD67890",
+    "isRented": false,
+    "rentedDays": 0,
+    "pricePerHour": 15
   }
 ]

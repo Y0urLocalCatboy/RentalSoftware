@@ -25,34 +25,61 @@ public class SecondSceneController {
     private Scene scene3;
     private Scene scene1;
     private List<Car> all;
-    private Vehicle clickedCar;
+    private Car clickedCar;
+    private InvoiceSceneController InvoiceSceneController;
 
-    public void init(Stage stage, Scene scene3, Scene scene1) {
+    public void init(Stage stage, Scene scene3, Scene scene1, InvoiceSceneController InvoiceSceneController) {
         this.stage = stage;
         this.scene3 = scene3;
         this.scene1 = scene1;
+        this.InvoiceSceneController = InvoiceSceneController;
+        read();
     }
-
+private void read() {
+    try (FileReader fileReader = new FileReader("vehicles.json")) {
+        JsonReader jsonReader = new JsonReader(fileReader);
+        Gson gson = new Gson();
+        Type carListType = new TypeToken<List<Car>>() {
+        }.getType();
+        all = gson.fromJson(jsonReader, carListType);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+private void write() {
+    try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        gson.toJson(all, fileWriter);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
     @FXML
     public void initialize() {
+        updateView();
+    }
+    public void updateView() {
+        read();
         carList.getItems().clear();
         reservedCarList.getItems().clear();
-        try (FileReader fileReader = new FileReader("vehicles.json")) {
-            JsonReader jsonReader = new JsonReader(fileReader);
-            Gson gson = new Gson();
-            Type carListType = new TypeToken<List<Car>>(){}.getType();
-            all = gson.fromJson(jsonReader, carListType);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for (Car car : all) {
-            if(!car.isRented()) {
-                carList.getItems().add(car.toString());
+
+        for (Car vehicle : all) {
+            if (!vehicle.isRented()) {
+                if (vehicle instanceof OtherVehicles) {
+                    carList.getItems().add(((OtherVehicles) vehicle).toString());
+                } else {
+                    carList.getItems().add(vehicle.toString());
+                }
             } else {
-                reservedCarList.getItems().add(car.toString());
+                if (vehicle instanceof OtherVehicles) {
+                    reservedCarList.getItems().add(((OtherVehicles) vehicle).toString());
+                } else {
+                    reservedCarList.getItems().add(vehicle.toString());
+                }
             }
         }
     }
+
 
     @FXML
     private Label availableLabel;
@@ -67,7 +94,8 @@ public class SecondSceneController {
     private TextField searchTextField;
 
     @FXML
-    private void back() throws IOException {
+    private void back(){
+        read();
         stage.setScene(scene1);
     }
 
@@ -78,6 +106,8 @@ public class SecondSceneController {
 
     @FXML
     private void goToInvoice() {
+        write();
+        InvoiceSceneController.prepare();
         stage.setScene(scene3);
     }
 
@@ -86,25 +116,18 @@ public class SecondSceneController {
         String selected = carList.getSelectionModel().getSelectedItem();
         if (selected != null) {
             String[] parts = selected.split(" ");
-            if (parts.length >= 7) {
-                String chosen = parts[6];
-                for (Car car : all) {
-                    if (car.getLicensePlate().equals(chosen)) {
-                        clickedCar = car;
-                        break;
-                    }
+            String chosen = parts[6];
+            for (Car car : all) {
+                if (car.getLicensePlate().equals(chosen)) {
+                    clickedCar = car;
+                    break;
                 }
             }
         }
     }
 
     @FXML
-    void listScrolled(ScrollEvent event) {
-        // Add functionality to handle list scroll event
-    }
-
-
-
+    void listScrolled(ScrollEvent event) {}
     @FXML
     private void handleReserveButtonAction() {
         if (clickedCar == null) {
@@ -125,11 +148,7 @@ public class SecondSceneController {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(all);
 
-        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
-            fileWriter.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        write();
         initialize();
     }
 
@@ -138,57 +157,26 @@ public class SecondSceneController {
         String selected = reservedCarList.getSelectionModel().getSelectedItem();
         if (selected != null) {
             String[] parts = selected.split(" ");
-            if (parts.length >= 7) {
-                String chosen = parts[6];
-                for (Car car : all) {
-                    if (chosen.equals(car.getLicensePlate())) {
-                        clickedCar = car;
-                        break;
-                    }
+            String chosen = parts[6];
+            for (Car car : all) {
+                if (chosen.equals(car.getLicensePlate())) {
+                    clickedCar = car;
+                    break;
                 }
-                if (clickedCar != null && clickedCar.isRented()) {
-                    clickedCar.setRented(false);
-                    carList.getItems().add(clickedCar.toString());
-                    reservedCarList.getItems().remove(selected);
+            }
+            if (clickedCar != null && clickedCar.isRented()) {
+                clickedCar.setRented(false);
+                carList.getItems().add(clickedCar.toString());
+                reservedCarList.getItems().remove(selected);
+                availableLabel.setText("Car returned successfully");
 
-                    availableLabel.setText("Car returned successfully");
-
-                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                    String json = gson.toJson(all);
-
-                    try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
-                        fileWriter.write(json);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    initialize();
-                } else {
-                    availableLabel.setText("This car hasn't been rented.");
-                }
+                write();
+                updateView();
             } else {
-                availableLabel.setText("Selected item does not contain enough parts.");
+                availableLabel.setText("This car hasn't been rented.");
             }
         } else {
-            availableLabel.setText("No item selected.");
-        }
-    }
-    @FXML
-    void reserveCar() {
-        if (clickedCar != null) {
-            clickedCar.reservation();
-            carList.getItems().remove(clickedCar.toString());
-            reservedCarList.getItems().add(clickedCar.toString());
-            updateJsonFile();
-        }
-    }
-
-    @FXML
-    void returnCar() {
-        if (clickedCar != null) {
-            Return invoice = clickedCar.invoice();
-            reservedCarList.getItems().remove(clickedCar.toString());
-            carList.getItems().add(clickedCar.toString());
-            updateJsonFile();
+            availableLabel.setText("No item selected");
         }
     }
 
@@ -202,14 +190,4 @@ public class SecondSceneController {
             }
         }
     }
-
-    private void updateJsonFile() {
-        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            gson.toJson(all, fileWriter);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

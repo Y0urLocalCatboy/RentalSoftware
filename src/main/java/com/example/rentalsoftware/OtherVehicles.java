@@ -18,6 +18,6 @@ public class OtherVehicles extends Car implements UserInterface {
 
     @Override
     public String toString() {
-        return "[" + additionalInformation + "]" + " " + super.getBrand() + " " + super.getPricePerHour() + " PLN/hour";
+        return "[" + additionalInformation + "] " + super.getBrand() + " " + super.getPricePerHour() + " PLN/hour" + " License Plate: " + super.getLicensePlate();
     }
 }

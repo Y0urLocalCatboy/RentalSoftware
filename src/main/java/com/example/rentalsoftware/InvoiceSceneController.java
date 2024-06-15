@@ -1,5 +1,4 @@
 package com.example.rentalsoftware;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -10,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -23,7 +23,27 @@ public class InvoiceSceneController {
         this.stage = stage;
         this.scene2 = scene2;
     }
+    public void prepare() {
+        String invoice = "Invoice\n";
+        int price = 0;
+        try (FileReader fileReader = new FileReader("vehicles.json")) {
+            JsonReader jsonReader = new JsonReader(fileReader);
+            Gson gson = new Gson();
+            Type carListType = new TypeToken<List<Car>>(){}.getType();
+            all = gson.fromJson(jsonReader, carListType);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (Car car : all) {
+            if (car.isRented()) {
+                invoice += car + " Rented for: " + car.getRentedDays() + " days\n";
+                price += car.getPricePerHour() * car.getRentedDays() * 24;
+            }
+        }
+        invoiceTitle.setText("Invoice");
+        invoiceBody.setText(invoice + "Total price: " + price + " PLN");
 
+    }
     @FXML
     public void initialize() {
         String invoice = "Invoice\n";
@@ -31,10 +51,9 @@ public class InvoiceSceneController {
         try (FileReader fileReader = new FileReader("vehicles.json")) {
             JsonReader jsonReader = new JsonReader(fileReader);
             Gson gson = new Gson();
-            Type carListType = new TypeToken<List<Car>>() {
-            }.getType();
+            Type carListType = new TypeToken<List<Car>>(){}.getType();
             all = gson.fromJson(jsonReader, carListType);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         for (Car car : all) {
