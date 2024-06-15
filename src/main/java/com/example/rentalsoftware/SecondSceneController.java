@@ -36,42 +36,45 @@ public class SecondSceneController {
         this.InvoiceSceneController = InvoiceSceneController;
         read();
     }
-private void read() {
-    try (FileReader fileReader = new FileReader("vehicles.json")) {
-        JsonReader jsonReader = new JsonReader(fileReader);
-        Gson gson = new Gson();
-        Type carListType = new TypeToken<List<Car>>() {
-        }.getType();
-        all = gson.fromJson(jsonReader, carListType);
-    } catch (IOException e) {
-        e.printStackTrace();
+
+    private void read() {
+        try (FileReader fileReader = new FileReader("vehicles.json")) {
+            JsonReader jsonReader = new JsonReader(fileReader);
+            Gson gson = new Gson();
+            Type carListType = new TypeToken<List<Car>>() {
+            }.getType();
+            all = gson.fromJson(jsonReader, carListType);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
-private void write() {
-    try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        gson.toJson(all, fileWriter);
-    } catch (IOException e) {
-        e.printStackTrace();
+
+    private void write() {
+        try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(all, fileWriter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
+
     @FXML
     public void initialize() {
         updateView();
     }
+
     public void updateView() {
         read();
         carList.getItems().clear();
         reservedCarList.getItems().clear();
         for (Car vehicle : all) {
             if (!vehicle.isRented()) {
-                    carList.getItems().add(vehicle.toString());
+                carList.getItems().add(vehicle.toString());
             } else {
-                    reservedCarList.getItems().add(vehicle.toString());
-                }
+                reservedCarList.getItems().add(vehicle.toString());
             }
         }
-
+    }
 
     @FXML
     private Label availableLabel;
@@ -86,7 +89,7 @@ private void write() {
     private TextField searchTextField;
 
     @FXML
-    private void back(){
+    private void back() {
         read();
         stage.setScene(scene1);
     }
@@ -120,6 +123,7 @@ private void write() {
 
     @FXML
     void listScrolled(ScrollEvent event) {}
+
     @FXML
     private void handleReserveButtonAction() {
         if (clickedCar == null) {
@@ -174,12 +178,13 @@ private void write() {
     private void search1(ActionEvent event) {
         String query = searchTextField.getText().toLowerCase();
         carList.getItems().clear();
-        List<String> filteredReservedCars = all.stream()
-                .filter(car -> car.isRented() && car.toString().toLowerCase().contains(query))
+        List<String> filteredCars = all.stream()
+                .filter(car -> !car.isRented() && car.toString().toLowerCase().contains(query))
                 .map(Car::toString)
                 .toList();
-        carList.getItems().addAll(filteredReservedCars);
+        carList.getItems().addAll(filteredCars);
     }
+
     @FXML
     private void search2(ActionEvent event) {
         String query = searchTextField.getText().toLowerCase();
