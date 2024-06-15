@@ -25,7 +25,7 @@
     "brand": "Toyota",
     "color": "Yellow",
     "licensePlate": "EF24680",
-    "isRented": true,
+    "isRented": false,
     "rentedDays": 1,
     "pricePerHour": 7
   },
@@ -35,7 +35,7 @@
     "brand": "Volkswagen",
     "color": "Black",
     "licensePlate": "GH13579",
-    "isRented": true,
+    "isRented": false,
     "rentedDays": 1,
     "pricePerHour": 10
   },
@@ -45,7 +45,7 @@
     "brand": "Renault",
     "color": "Black",
     "licensePlate": "AF43290",
-    "isRented": false,
+    "isRented": true,
     "rentedDays": 1,
     "pricePerHour": 15
   },
@@ -55,7 +55,7 @@
     "brand": "Skoda",
     "color": "Black",
     "licensePlate": "VC13011",
-    "isRented": false,
+    "isRented": true,
     "rentedDays": 1,
     "pricePerHour": 100
   },
@@ -65,7 +65,7 @@
     "brand": "Lenovo",
     "color": "Crimson",
     "licensePlate": "KSD1234",
-    "isRented": true,
+    "isRented": false,
     "rentedDays": 1,
     "pricePerHour": 7
   },

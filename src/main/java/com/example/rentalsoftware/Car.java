@@ -1,6 +1,6 @@
 package com.example.rentalsoftware;
 
-public class Car extends Vehicle implements UserInterface {
+public class Car extends Vehicle {
     private String additionalInfo;
     private String type; // ICE/hybrid/BEV
     private String brand;
@@ -11,19 +11,6 @@ public class Car extends Vehicle implements UserInterface {
         this.brand = brand;
         this.additionalInfo = additionalInfo;
     }
-
-    @Override
-    public Return invoice() {
-        Return return1 = new Return(getLicensePlate(), getBrand(), (24 * getRentedDays() * getPricePerHour()));
-        this.setRented(false);
-        return return1;
-    }
-
-    @Override
-    public void reservation() {
-        this.setRented(true);
-    }
-
     public String getType() {
         return type;
     }

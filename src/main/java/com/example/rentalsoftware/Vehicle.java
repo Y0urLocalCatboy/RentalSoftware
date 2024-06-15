@@ -1,11 +1,11 @@
 package com.example.rentalsoftware;
 
-public abstract class Vehicle implements UserInterface{
+public abstract class Vehicle {
     private String color;
     private String licensePlate;
-    private boolean isRented; //true if the vehicle is already rented, false otherwise
-    private int rentedDays; //number of hours the vehicle is rented for
-    private int pricePerHour; //price for renting the vehicle for one hour
+    private boolean isRented;
+    private int rentedDays;
+    private int pricePerHour;
     public Vehicle(String color, String licensePlate, boolean isRented, int rentedDays, int pricePerHour) {
         this.color = color;
         this.licensePlate = licensePlate;

@@ -20,7 +20,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SecondSceneController {
     private Stage stage;
@@ -139,8 +138,6 @@ private void write() {
         availableLabel.setText("Car reserved successfully");
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(all);
-
         write();
         initialize();
     }
@@ -180,7 +177,7 @@ private void write() {
         List<String> filteredReservedCars = all.stream()
                 .filter(car -> car.isRented() && car.toString().toLowerCase().contains(query))
                 .map(Car::toString)
-                .collect(Collectors.toList());
+                .toList();
         carList.getItems().addAll(filteredReservedCars);
     }
     @FXML
@@ -190,7 +187,7 @@ private void write() {
         List<String> filteredReservedCars = all.stream()
                 .filter(car -> car.isRented() && car.toString().toLowerCase().contains(query))
                 .map(Car::toString)
-                .collect(Collectors.toList());
+                .toList();
         reservedCarList.getItems().addAll(filteredReservedCars);
     }
 }

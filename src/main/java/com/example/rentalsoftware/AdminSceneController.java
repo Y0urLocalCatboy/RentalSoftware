@@ -35,7 +35,7 @@ public class AdminSceneController {
         this.stage = stage;
         this.scene1 = scene1;
         this.scene2 = scene2;
-        this.secondSceneController = secondSceneController; // Inicjalizacja kontrolera scene2
+        this.secondSceneController = secondSceneController;
         read();
     }
     private void refresh(){
@@ -145,10 +145,7 @@ public class AdminSceneController {
         delete();
         add();
     }
-    @FXML
-    private void changeCat(){
-        stage.setScene(scene1);
-    }
+
     @FXML
     void mouseClick(MouseEvent event) {
         String selected = carList.getSelectionModel().getSelectedItem();

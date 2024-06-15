@@ -20,7 +20,7 @@
       <Button fx:id="back" layoutX="134.0" layoutY="326.0" mnemonicParsing="false" onAction="#back" text="Log Out" />
       <Button fx:id="exit" layoutX="146.0" layoutY="361.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
       <Button fx:id="addVehicle" layoutX="68.0" layoutY="289.0" mnemonicParsing="false" onAction="#add" text="Add Vehicle" />
-      <Button fx:id="changeVehicle" layoutX="59.0" layoutY="247.0" mnemonicParsing="false" onAction="#changeVeh" text="Change Vehicle" />
+      <Button fx:id="changeVehicle" layoutX="114.0" layoutY="248.0" mnemonicParsing="false" onAction="#changeVeh" text="Change Vehicle" />
       <Button fx:id="deleteVehicle" layoutX="185.0" layoutY="289.0" mnemonicParsing="false" onAction="#delete" text="Delete Vehicle" />
       <TextField fx:id="textFieldBrand" layoutX="14.0" layoutY="150.0" />
       <TextField fx:id="textFieldColor" layoutX="172.0" layoutY="150.0" />
@@ -35,6 +35,5 @@
       <Label fx:id="labelTypeOfVeh" alignment="CENTER" layoutX="14.0" layoutY="80.0" prefHeight="17.0" prefWidth="149.0" text="Type of the Vehicle:" />
       <ScrollBar layoutX="329.0" layoutY="69.0" orientation="VERTICAL" prefHeight="322.0" prefWidth="15.0" />
       <Label fx:id="labelList" alignment="CENTER" contentDisplay="CENTER" layoutX="432.0" layoutY="35.0" prefHeight="35.0" prefWidth="79.0" text="Vehicles:" />
-      <Button fx:id="changeCategory" layoutX="177.0" layoutY="247.0" mnemonicParsing="false" onAction="#changeCat" text="Change Category" />
    </children>
 </Pane>

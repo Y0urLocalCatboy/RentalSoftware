@@ -1,10 +1,15 @@
 package com.example.rentalsoftware;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FirstSceneController {
     private Stage stage;
@@ -63,6 +68,13 @@ public class FirstSceneController {
         } else if (nameTextField.getText().contains(" ") || surnameTextField.getText().contains(" ")) {
             fluffLabel.setText("Name and surname must not contain spaces!");
             return;
+        }
+        String name = nameTextField.getText() + " " + surnameTextField.getText();
+        try (FileWriter fileWriter = new FileWriter("person.json")) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(name, fileWriter);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         setFluffLabel("Enter your name and surname to log in!");
         setNameTextField("");
