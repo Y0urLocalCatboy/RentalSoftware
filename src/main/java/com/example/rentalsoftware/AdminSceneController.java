@@ -18,6 +18,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdminSceneController {
     private Stage stage;
@@ -25,6 +26,7 @@ public class AdminSceneController {
     private Scene scene2;
 
     private List<Car> all;
+    private List<String> licensePlates;
     private Car clickedCar;
     private SecondSceneController secondSceneController;
 
@@ -41,6 +43,9 @@ public class AdminSceneController {
         carList.getItems().clear();
         for (Car car : all)
             carList.getItems().add(car.toString());
+        licensePlates = all.stream()
+                .map(Car::getLicensePlate)
+                .collect(Collectors.toList());
     }
     private void write() {
         try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
@@ -56,6 +61,9 @@ public class AdminSceneController {
             Gson gson = new Gson();
             Type carListType = new TypeToken<List<Car>>(){}.getType();
             all = gson.fromJson(jsonReader, carListType);
+            licensePlates = all.stream()
+                    .map(Car::getLicensePlate)
+                    .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -110,27 +118,16 @@ public class AdminSceneController {
         } if(!textFieldLicensePlate.getText().matches("[A-Z0-9]+")){
             labelLicensePlate.setText("Big letters and numbers!");
             return;
+        } if(!licensePlates.contains(textFieldLicensePlate.getText())){
+            labelLicensePlate.setText("License plate already exists!");
+            return;
         }
-        if(textFieldInfo.getText().equals("Car")){
-            String brand = textFieldBrand.getText();
-            String color = textFieldColor.getText();
-            String licensePlate = textFieldLicensePlate.getText();
-            String type = textFieldType.getText();
-            int price = Integer.parseInt(textFieldPrice.getText());
-            Car car = new Car(type, brand, color, licensePlate, false, 0, price);
+            Car car = new Car(textFieldType.getText(), textFieldBrand.getText(), textFieldColor.getText(), textFieldLicensePlate.getText(), false, 0, Integer.parseInt(textFieldPrice.getText()), textFieldInfo.getText());
             all.add(car);
             refresh();
-        } else {
-            String additionalInfo = textFieldInfo.getText();
-            String brand = textFieldBrand.getText();
-            String color = textFieldColor.getText();
-            String licensePlate = textFieldLicensePlate.getText();
-            String type = textFieldType.getText();
-            int price = Integer.parseInt(textFieldPrice.getText());
-            OtherVehicles car = new OtherVehicles(type, brand, color, licensePlate, false, 0, price, additionalInfo);
-            all.add(car);
-            refresh();
-        }
+        licensePlates = all.stream()
+                .map(Car::getLicensePlate)
+                .collect(Collectors.toList());
     }
     @FXML
     private void delete(){
@@ -169,7 +166,8 @@ public class AdminSceneController {
         textFieldColor.setText(clickedCar.getColor());
         textFieldLicensePlate.setText(clickedCar.getLicensePlate());
         textFieldPrice.setText(String.valueOf(clickedCar.getPricePerHour()));
-        textFieldType.setText(clickedCar.getType());textFieldInfo.setText("Car");
+        textFieldType.setText(clickedCar.getType());
+        textFieldInfo.setText(clickedCar.getAdditionalInfo());
     }
 
     @FXML

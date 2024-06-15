@@ -1,13 +1,15 @@
 package com.example.rentalsoftware;
 
 public class Car extends Vehicle implements UserInterface {
+    private String additionalInfo;
     private String type; // ICE/hybrid/BEV
     private String brand;
 
-    public Car(String type, String brand, String color, String licensePlate, boolean isRented, int rentedDays, int pricePerHour) {
+    public Car(String type, String brand, String color, String licensePlate, boolean isRented, int rentedDays, int pricePerHour, String additionalInfo) {
         super(color, licensePlate, isRented, rentedDays, pricePerHour);
         this.type = type;
         this.brand = brand;
+        this.additionalInfo = additionalInfo;
     }
 
     @Override
@@ -38,8 +40,16 @@ public class Car extends Vehicle implements UserInterface {
         this.brand = brand;
     }
 
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
     @Override
     public String toString() {
-        return "[Car] " + getBrand() + " " + super.toString();
+        return "[" + additionalInfo + "] " + getBrand() + " " + super.toString();
     }
 }

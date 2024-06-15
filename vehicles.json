@@ -1,5 +1,6 @@
 [
   {
+    "additionalInfo": "Car",
     "type": "ICE",
     "brand": "Toyota",
     "color": "Crimson",
@@ -9,6 +10,7 @@
     "pricePerHour": 10
   },
   {
+    "additionalInfo": "Car",
     "type": "BEV",
     "brand": "Tesla",
     "color": "Black",
@@ -18,6 +20,7 @@
     "pricePerHour": 15
   },
   {
+    "additionalInfo": "Car",
     "type": "Hybrid",
     "brand": "Toyota",
     "color": "Yellow",
@@ -27,6 +30,7 @@
     "pricePerHour": 7
   },
   {
+    "additionalInfo": "Car",
     "type": "BEV",
     "brand": "Volkswagen",
     "color": "Black",
@@ -36,6 +40,7 @@
     "pricePerHour": 10
   },
   {
+    "additionalInfo": "Car",
     "type": "BEV",
     "brand": "Renault",
     "color": "Black",
@@ -45,6 +50,7 @@
     "pricePerHour": 15
   },
   {
+    "additionalInfo": "Car",
     "type": "BEV",
     "brand": "Skoda",
     "color": "Black",
@@ -54,6 +60,7 @@
     "pricePerHour": 100
   },
   {
+    "additionalInfo": "Motorcycle",
     "type": "Hybrid",
     "brand": "Lenovo",
     "color": "Crimson",
@@ -63,6 +70,7 @@
     "pricePerHour": 7
   },
   {
+    "additionalInfo": "Pickup",
     "type": "BEV",
     "brand": "Lenovo",
     "color": "Black",

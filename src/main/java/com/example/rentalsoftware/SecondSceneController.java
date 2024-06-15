@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -19,6 +20,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SecondSceneController {
     private Stage stage;
@@ -62,23 +64,14 @@ private void write() {
         read();
         carList.getItems().clear();
         reservedCarList.getItems().clear();
-
         for (Car vehicle : all) {
             if (!vehicle.isRented()) {
-                if (vehicle instanceof OtherVehicles) {
-                    carList.getItems().add(((OtherVehicles) vehicle).toString());
-                } else {
                     carList.getItems().add(vehicle.toString());
-                }
             } else {
-                if (vehicle instanceof OtherVehicles) {
-                    reservedCarList.getItems().add(((OtherVehicles) vehicle).toString());
-                } else {
                     reservedCarList.getItems().add(vehicle.toString());
                 }
             }
         }
-    }
 
 
     @FXML
@@ -181,13 +174,23 @@ private void write() {
     }
 
     @FXML
-    private void searchCars(ScrollEvent event) {
+    private void search1(ActionEvent event) {
         String query = searchTextField.getText().toLowerCase();
         carList.getItems().clear();
-        for (Car car : all) {
-            if (car.toString().toLowerCase().contains(query)) {
-                carList.getItems().add(car.toString());
-            }
-        }
+        List<String> filteredReservedCars = all.stream()
+                .filter(car -> car.isRented() && car.toString().toLowerCase().contains(query))
+                .map(Car::toString)
+                .collect(Collectors.toList());
+        carList.getItems().addAll(filteredReservedCars);
+    }
+    @FXML
+    private void search2(ActionEvent event) {
+        String query = searchTextField.getText().toLowerCase();
+        reservedCarList.getItems().clear();
+        List<String> filteredReservedCars = all.stream()
+                .filter(car -> car.isRented() && car.toString().toLowerCase().contains(query))
+                .map(Car::toString)
+                .collect(Collectors.toList());
+        reservedCarList.getItems().addAll(filteredReservedCars);
     }
 }
