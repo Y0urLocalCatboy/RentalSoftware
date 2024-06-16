@@ -26,7 +26,6 @@ public class AdminSceneController {
     private Scene scene2;
 
     private List<Car> all;
-    private List<String> licensePlates;
     private Car clickedCar;
     private SecondSceneController secondSceneController;
 
@@ -43,9 +42,7 @@ public class AdminSceneController {
         carList.getItems().clear();
         for (Car car : all)
             carList.getItems().add(car.toString());
-        licensePlates = all.stream()
-                .map(Car::getLicensePlate)
-                .collect(Collectors.toList());
+
     }
     private void write() {
         try (FileWriter fileWriter = new FileWriter("vehicles.json")) {
@@ -61,9 +58,6 @@ public class AdminSceneController {
             Gson gson = new Gson();
             Type carListType = new TypeToken<List<Car>>(){}.getType();
             all = gson.fromJson(jsonReader, carListType);
-            licensePlates = all.stream()
-                    .map(Car::getLicensePlate)
-                    .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -118,16 +112,10 @@ public class AdminSceneController {
         } if(!textFieldLicensePlate.getText().matches("[A-Z0-9]+")){
             labelLicensePlate.setText("Big letters and numbers!");
             return;
-        } if(!licensePlates.contains(textFieldLicensePlate.getText())){
-            labelLicensePlate.setText("License plate already exists!");
-            return;
         }
             Car car = new Car(textFieldType.getText(), textFieldBrand.getText(), textFieldColor.getText(), textFieldLicensePlate.getText(), false, 0, Integer.parseInt(textFieldPrice.getText()), textFieldInfo.getText());
             all.add(car);
             refresh();
-        licensePlates = all.stream()
-                .map(Car::getLicensePlate)
-                .collect(Collectors.toList());
     }
     @FXML
     private void delete(){

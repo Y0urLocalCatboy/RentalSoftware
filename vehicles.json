@@ -78,5 +78,15 @@
     "isRented": false,
     "rentedDays": 0,
     "pricePerHour": 15
+  },
+  {
+    "additionalInfo": "Car",
+    "type": "BEV",
+    "brand": "Toyota",
+    "color": "Blue",
+    "licensePlate": "EF24611",
+    "isRented": true,
+    "rentedDays": 1,
+    "pricePerHour": 7
   }
 ]
